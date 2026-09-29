@@ -9,15 +9,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: 17
-      - uses: gradle/actions/setup-gradle@v4
-      - run: chmod +x gradlew && ./gradlew assembleRelease --no-daemon
+      - uses: gradle/actions/setup-gradle@v5
+      - run: chmod +x gradlew && ./gradlew assembleRelease --no-daemon --stacktrace 2>&1 | tee build.log; exit ${PIPESTATUS[0]}
+        shell: bash
+      # On failure, publish the build log on a "build-log" branch for debugging.
+      - if: failure()
+        run: |
+          mkdir logout && cp build.log logout/ && cd logout
+          git init -q -b build-log && git add build.log
+          git -c user.name=ci -c user.email=ci@localhost commit -qm "log ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" build-log
       - run: cp app/build/outputs/apk/release/app-release.apk StepAdder.apk
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: StepAdder-apk
           path: StepAdder.apk
