@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">StepAdder</string>
+    <string name="privacy_text">StepAdder privacy\n\n
+• The only permission requested is Health Connect \"Write steps\".\n
+• It cannot read any of your health data, including your existing steps.\n
+• It has no internet permission, so nothing can leave your phone.\n
+• No account, no login, no analytics, no ads.\n
+• It stores nothing on disk. The \"Undo\" list lives in memory only and is cleared when the app closes.\n
+• Records are written to Health Connect on this phone. What happens after that is controlled by the apps you have allowed to read Health Connect (for example Google Health).\n\n
+You can revoke access any time in Settings → Security &amp; privacy → Privacy controls → Health Connect → App permissions → StepAdder.</string>
+</resources>

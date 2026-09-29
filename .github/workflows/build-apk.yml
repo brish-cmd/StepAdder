@@ -1,0 +1,29 @@
+name: Build APK
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v4
+      - run: chmod +x gradlew && ./gradlew assembleRelease --no-daemon
+      - run: cp app/build/outputs/apk/release/app-release.apk StepAdder.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: StepAdder-apk
+          path: StepAdder.apk
+      # Also publish the APK on an "apk" branch so it can be pulled with plain git.
+      - run: |
+          mkdir out && cp StepAdder.apk out/ && cd out
+          git init -q -b apk && git add StepAdder.apk
+          git -c user.name=ci -c user.email=ci@localhost commit -qm "APK from ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" apk

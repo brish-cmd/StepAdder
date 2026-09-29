@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/grantButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Allow writing steps"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Steps to add" />
+
+        <TextView
+            android:id="@+id/pendingCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="48sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button android:id="@+id/plus100" android:layout_width="0dp"
+                android:layout_height="wrap_content" android:layout_weight="1" android:text="+100" />
+            <Button android:id="@+id/plus500" android:layout_width="0dp"
+                android:layout_height="wrap_content" android:layout_weight="1" android:text="+500" />
+            <Button android:id="@+id/plus1000" android:layout_width="0dp"
+                android:layout_height="wrap_content" android:layout_weight="1" android:text="+1k" />
+            <Button android:id="@+id/plus5000" android:layout_width="0dp"
+                android:layout_height="wrap_content" android:layout_weight="1" android:text="+5k" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/customAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Custom amount"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="6" />
+
+            <Button android:id="@+id/plusCustom" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="Add" />
+            <Button android:id="@+id/clearPending" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="Clear" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Walk finished at" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button android:id="@+id/endNow" android:layout_width="0dp"
+                android:layout_height="wrap_content" android:layout_weight="1" android:text="Now" />
+            <Button android:id="@+id/endPick" android:layout_width="0dp"
+                android:layout_height="wrap_content" android:layout_weight="1" android:text="Pick time" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/windowPreview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/writeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Write to Health Connect" />
+
+        <Button
+            android:id="@+id/undoButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Undo last write" />
+
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:id="@+id/privacyLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:padding="8dp"
+            android:text="Privacy"
+            android:textColor="?android:attr/colorAccent" />
+    </LinearLayout>
+</ScrollView>
